@@ -19,7 +19,6 @@ public class PersonService implements PersonServiceInterface {
 
     public Optional<Person> getUser() {
         return personRepository.findById(1L);
-
     }
     @Transactional
     public Person save(Person person) {

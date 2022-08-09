@@ -11,19 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequestMapping("/produto")
 public class PersonController {
-
-
     final PersonService personService;
 
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
 
-
-
     @GetMapping("/teste")
     public String teste() {
         return "teste";
     }
-
 }
