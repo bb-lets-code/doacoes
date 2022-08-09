@@ -1,15 +1,23 @@
 package bb.com.donation.controller;
 
 
-import bb.com.donation.service.impl.PersonService;
+import bb.com.donation.dto.person.PersonSaveDTO;
+import bb.com.donation.model.Person;
+import bb.com.donation.service.PersonService;
+
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/produto")
+@RequestMapping("/person")
 public class PersonController {
     final PersonService personService;
 
@@ -17,8 +25,35 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/teste")
-    public String teste() {
-        return "teste";
+    @GetMapping("/getAll")
+    @Operation(summary = "Lista todos os produtos")
+    public ResponseEntity<List<Person>> getAll() {
+        return ResponseEntity.ok (personService.getAll());
+    }
+
+
+    @GetMapping("/Id/{id}")
+    @Operation(summary = "Get Person by Id")
+    public ResponseEntity<Person> getById(@PathVariable @Valid Long id) {
+        return ResponseEntity.ok (personService.getById (id));
+    }
+
+    @PostMapping("/save")
+    @Operation(summary = "Save Person")
+    public ResponseEntity<Person> save(@RequestBody @Valid @NotNull PersonSaveDTO person) {
+        Person personSaved = personService.save (person);
+        return ResponseEntity.ok (personSaved);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @Operation(summary = "Delete Person")
+    public void delete(@PathVariable Long id) {
+        personService.delete (id);
+    }
+
+    @GetMapping("/getByName/{name}")
+    @Operation(summary = "Get Person by Name")
+    public ResponseEntity<List<Person>> getByName(@PathVariable String name) {
+        return ResponseEntity.ok (personService.getByName (name));
     }
 }
