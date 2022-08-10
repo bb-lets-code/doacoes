@@ -8,7 +8,5 @@ import java.util.List;
 
 @Service
 public interface PersonService extends GenericService<Person, Long, PersonGenericDTO> {
-
-
     List<Person> getByName(String name);
 }
