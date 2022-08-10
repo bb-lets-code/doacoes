@@ -1,6 +1,7 @@
 package bb.com.donation;
 
 import bb.com.donation.controller.PersonController;
+import bb.com.donation.dto.person.PersonSaveDTO;
 import bb.com.donation.model.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +19,16 @@ class PersonServiceTest {
 
     @Test
     void savePersonTest() {
-        Person newPerson = new Person( 1L,"Igor");
+        PersonSaveDTO newPerson = new PersonSaveDTO();
+//        Person newPerson = new Person( 1L,"Igor");
         personController.save(newPerson);
         assertThat(personController.getById(1L).getBody().getName()).isEqualTo("Igor");
     }
 
     @Test
     void getPersonsTest() {
-
-        Person newPerson = new Person( 1L,"Igor");
+        PersonSaveDTO newPerson = new PersonSaveDTO();
+//        Person newPerson = new Person( 1L,"Igor");
         personController.save(newPerson);
         assertThat(personController.getById(1L).getBody().getName())
                 .isEqualTo(newPerson.getName());
@@ -34,9 +36,11 @@ class PersonServiceTest {
 
     @Test
     void updatePersonTest() {
-        Person oldPerson = new Person( 3L,"Igor");
+        PersonSaveDTO newPerson = new PersonSaveDTO();
+        PersonSaveDTO oldPerson = new PersonSaveDTO();
+//        Person oldPerson = new Person( 3L,"Igor");
         personRepository.save(oldPerson);
-        Person newPerson = new Person(3L, "Igor Rhamon");
+//        Person newPerson = new Person(3L, "Igor Rhamon");
         personController.save(newPerson);
         assertThat(personController.getById(newPerson.getId()).getBody().getName())
                 .isEqualTo(newPerson.getName());
