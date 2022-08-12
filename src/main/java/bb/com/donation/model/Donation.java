@@ -55,6 +55,9 @@ public class Donation {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @OneToMany(mappedBy = "donation", cascade = CascadeType.MERGE, orphanRemoval = true)
+    private Set<Message> messages = new LinkedHashSet<> ();
+
 
     @Override
     public boolean equals(Object o) {

@@ -1,8 +1,16 @@
 package bb.com.donation.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
+@EqualsAndHashCode
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "message")
 public class Message {
     @Id
@@ -27,6 +35,10 @@ public class Message {
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "last_message_id")
     private Message lastMessage;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "donation_id")
+    private Donation donation;
 
     public Message getLastMessage() {
         return lastMessage;
