@@ -19,7 +19,7 @@ public interface PostService extends GenericService<Post, Long, PostGenericDTO> 
 
     public void delete(Long aLong);
 
-    public Post save(PostGenericDTO postGenericDTO);
+    public Post save(PostSaveDTO postGenericDTO);
 
     public Post getById(Long aLong);
 

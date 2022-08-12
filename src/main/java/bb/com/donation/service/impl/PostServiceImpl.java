@@ -1,5 +1,6 @@
 package bb.com.donation.service.impl;
 
+import bb.com.donation.dto.post.PostGenericDTO;
 import bb.com.donation.dto.post.PostSaveDTO;
 import bb.com.donation.exceptions.ValidacaoException;
 import bb.com.donation.model.Post;
@@ -29,12 +30,18 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post save(@NotNull PostSaveDTO postGenericDTO) {
-        Product product = productService.getById(postGenericDTO.getProductId ());
+        Product product = productService.getById(postGenericDTO.getIdProduct ());
         if(product == null) {
             throw new ValidacaoException("Product not found");
         }
         Post post = postGenericDTO.toPost();
         return postRepository.save(post);
+    }
+
+
+    @Override
+    public Post save(PostGenericDTO t) {
+        return null;
     }
 
     @Override
