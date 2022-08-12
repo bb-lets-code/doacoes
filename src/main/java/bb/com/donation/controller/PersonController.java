@@ -30,37 +30,37 @@ public class PersonController {
     public ResponseEntity<Person> getById(@PathVariable @Valid Long id) {
         try {
             return ResponseEntity.ok (personService.getById (id));
+        } catch (Exception e) {
+            log.error (e.getMessage ());
+            return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build ();
+        }
+    }
+
+    @PostMapping("/save")
+    @Operation(summary = "Save Person")
+    public ResponseEntity<Person> save(@RequestBody @Valid @NotNull PersonSaveDTO person) {
+        try {
+            Person personSaved = personService.save (person);
+            return ResponseEntity.ok (personSaved);
         } catch (Exception e){
             log.error (e.getMessage ());
             return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build ();
         }
     }
 
-    @PostMapping
-    @Operation(summary = "Save Person")
-    public ResponseEntity<Person> save(@RequestBody @Valid @NotNull PersonSaveDTO person) {
-        try {
-            Person personSaved = personService.save (person);
-            return ResponseEntity.ok (personSaved);
-        }catch (Exception e){
-            log.error (e.getMessage ());
-            return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build ();
-        }
-    }
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     @Operation(summary = "Delete Person")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         try {
             personService.delete (id);
             return ResponseEntity.ok ().build ();
-        }catch ( Exception e ) {
+        } catch ( Exception e ) {
             log.error (e.getMessage ());
             return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build ();
         }
     }
 
-    @GetMapping("/filtro")
+    @GetMapping("/filtro/{name}")
     @Operation(summary = "Get Person by Name")
     public ResponseEntity<Page<Person>> getByName(String name, Pageable pageable) {
         try {
