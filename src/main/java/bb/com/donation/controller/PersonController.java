@@ -7,14 +7,23 @@ import bb.com.donation.service.PersonService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
+<<<<<<< HEAD
 
+=======
+import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+>>>>>>> a6f4b0a8f7df3253962cd6c2ee927c5a9c954ab7
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+<<<<<<< HEAD
 import javax.validation.constraints.NotNull;
 import java.util.List;
+=======
+>>>>>>> a6f4b0a8f7df3253962cd6c2ee927c5a9c954ab7
 
 @RestController
 @Slf4j
@@ -24,14 +33,6 @@ public class PersonController {
     public PersonController(PersonService personService) {
         this.personService = personService;
     }
-
-
-    @GetMapping()
-    @Operation(summary = "List All Persons")
-    public ResponseEntity<List<Person>> getAll() {
-        return ResponseEntity.ok (personService.getAll());
-    }
-
 
     @GetMapping("/{id}")
     @Operation(summary = "Get Person by Id")
@@ -44,7 +45,7 @@ public class PersonController {
         }
     }
 
-    @PostMapping("")
+    @PostMapping
     @Operation(summary = "Save Person")
     public ResponseEntity<Person> save(@RequestBody @Valid @NotNull PersonSaveDTO person) {
         try {
@@ -68,14 +69,14 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/filtro")
     @Operation(summary = "Get Person by Name")
-    public ResponseEntity<List<Person>> getByName(@PathVariable String name) {
+    public ResponseEntity<Page<Person>> getByName(String name, Pageable pageable) {
         try {
-            return ResponseEntity.ok (personService.getByName (name));
-        }catch (Exception e){
-            log.error (e.getMessage ());
-            return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build ();
+            return ResponseEntity.ok(personService.filtrar(name, pageable));
+        } catch (Exception e){
+            log.error (e.getMessage());
+            return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
