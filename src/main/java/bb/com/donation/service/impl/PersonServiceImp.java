@@ -15,7 +15,6 @@ import java.util.List;
 
 @Service
 public class PersonServiceImp implements PersonService {
-
     PersonRepository personRepository;
 
     public PersonServiceImp(PersonRepository personRepository) {

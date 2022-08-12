@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public interface DonationService extends GenericService<Donation, Long, DonationSaveDTO> {
 
-
     Donation save(DonationSaveDTO donation);
 
     Donation getById(Long id);

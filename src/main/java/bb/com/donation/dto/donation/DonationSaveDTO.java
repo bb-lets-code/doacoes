@@ -28,7 +28,6 @@ public class DonationSaveDTO implements DonationGenericDTO {
 
     }
 
-
     public Donation toDonation() {
         Donation donation = new Donation ();
         donation.setId (null);

@@ -1,6 +1,5 @@
 package bb.com.donation.controller;
 
-
 import bb.com.donation.dto.person.PersonSaveDTO;
 import bb.com.donation.model.Person;
 import bb.com.donation.service.PersonService;
@@ -31,7 +30,7 @@ public class PersonController {
     public ResponseEntity<Person> getById(@PathVariable @Valid Long id) {
         try {
             return ResponseEntity.ok (personService.getById (id));
-        }catch (Exception e){
+        } catch (Exception e){
             log.error (e.getMessage ());
             return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build ();
         }

@@ -20,7 +20,6 @@ import java.util.List;
 @RequestMapping("/community")
 @RestController
 public class CommunityControlller {
-
     private final CommunityService communityService;
 
     public CommunityControlller(CommunityService communityService) {
@@ -61,5 +60,4 @@ public class CommunityControlller {
     public void delete(@PathVariable @Valid Long id) {
         communityService.delete (id);
     }
-
 }

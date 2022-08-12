@@ -30,11 +30,6 @@ public class ProductSaveDTO implements ProductGenericDTO {
 //        community.setId(this.getIdCommunity ());
 //        product.setCommunity (community);
 
-
-
         return product;
-
-
     }
-
 }

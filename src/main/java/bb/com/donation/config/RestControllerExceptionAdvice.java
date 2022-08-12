@@ -42,5 +42,4 @@ public class RestControllerExceptionAdvice {
         private String field;
         private String message;
     }
-
 }
