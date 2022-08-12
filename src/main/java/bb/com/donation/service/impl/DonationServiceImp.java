@@ -16,7 +16,6 @@ import java.util.List;
 
 @Service
 public class DonationServiceImp implements DonationService {
-
     final DonationRepository donationRepository;
     final PersonServiceImp personService;
     final ProductServiceImp productService;
@@ -26,7 +25,6 @@ public class DonationServiceImp implements DonationService {
         this.personService = personService;
         this.productService = productService;
     }
-
 
     @Override
     public Donation save(DonationSaveDTO donationSaveDTO) {
@@ -51,7 +49,6 @@ public class DonationServiceImp implements DonationService {
         return donationRepository.findAll();
     }
 
-
     @Override
     public void delete(Long aLong) {
         donationRepository.deleteById(aLong);
@@ -71,7 +68,4 @@ public class DonationServiceImp implements DonationService {
 
         return donationRepository.findAll(donationExample, pageable);
     }
-
-
-
 }

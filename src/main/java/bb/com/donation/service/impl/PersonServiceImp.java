@@ -1,6 +1,7 @@
 package bb.com.donation.service.impl;
 
 import bb.com.donation.dto.person.PersonGenericDTO;
+import bb.com.donation.dto.person.PersonSaveDTO;
 import bb.com.donation.exceptions.ValidacaoException;
 import bb.com.donation.model.Person;
 import bb.com.donation.repository.PersonRepository;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PersonServiceImp implements PersonService {
@@ -38,13 +40,16 @@ public class PersonServiceImp implements PersonService {
     }
 
     @Override
-    public Person save(PersonGenericDTO personGenericDTO) {
-        return personRepository.save(personGenericDTO.toPerson());
+    public Person save(PersonSaveDTO personSaveDTO) {
+        Person person = personRepository.getReferenceById(personSaveDTO.toPerson().getId());
+
+        return personRepository.save(personSaveDTO.toPerson());
     }
 
     @Override
     public Person getById(Long aLong) {
-        return personRepository.findById(aLong).orElseThrow (() -> new ValidacaoException("Não foi encontrado nenhum usuário com o id " + aLong));
+        return personRepository.findById(aLong)
+                .orElseThrow (() -> new ValidacaoException("Não foi encontrado nenhum usuário com o id " + aLong));
     }
 
     @Override
@@ -58,6 +63,7 @@ public class PersonServiceImp implements PersonService {
     }
 
     public Person findById(Long idPerson) {
-        return personRepository.findById(idPerson).orElseThrow (() -> new ValidacaoException("Não foi encontrado nenhum usuário com o id " + idPerson));
+        return personRepository.findById(idPerson)
+                .orElseThrow (() -> new ValidacaoException("Não foi encontrado nenhum usuário com o id " + idPerson));
     }
 }
