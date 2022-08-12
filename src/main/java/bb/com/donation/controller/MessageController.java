@@ -1,6 +1,5 @@
 package bb.com.donation.controller;
 
-
 import bb.com.donation.dto.message.MessageSaveDTO;
 import bb.com.donation.exceptions.ValidacaoException;
 import bb.com.donation.model.Message;
@@ -18,7 +17,6 @@ import java.util.List;
 @RequestMapping("/message")
 public class MessageController {
     final MessageServiceImpl messageService;
-
 
     public MessageController(MessageServiceImpl messageService) {
         this.messageService = messageService;

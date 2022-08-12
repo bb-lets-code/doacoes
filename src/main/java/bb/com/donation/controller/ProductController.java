@@ -23,7 +23,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping()
+    @GetMapping("/getAll")
     @Operation(summary = "Get All Products")
     public List<Product> getAll() {
         return productService.findAll();
@@ -35,7 +35,7 @@ public class ProductController {
         return productService.getById (id);
     }
 
-    @GetMapping("/filtro")
+    @GetMapping("/filtro/{name}")
     @Operation(summary = "Get Product by Name")
     public ResponseEntity<Page<Product>> getByName(String name, Pageable pageable) {
         try {
@@ -46,13 +46,13 @@ public class ProductController {
         }
     }
 
-    @PostMapping()
+    @PostMapping("/save")
     @Operation(summary = "Save Product")
     public Product save(@RequestBody ProductSaveDTO productSaveDTO) {
         return productService.save(productSaveDTO);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     @Operation(summary = "Delete Product")
     public void delete(@PathVariable Long id) {
         productService.deleteById(id);
