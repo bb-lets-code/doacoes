@@ -5,7 +5,7 @@ import bb.com.donation.dto.post.PostSaveDTO;
 import bb.com.donation.model.Post;
 import bb.com.donation.service.impl.PostServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@Log4j2
+@Slf4j
 @RestController
 @RequestMapping("/post")
 public class PostController {
@@ -48,7 +48,7 @@ public class PostController {
         }
     }
 
-    @RequestMapping("filter/{name}")
+    @GetMapping("filter/{name}")
     @Operation(summary = "Get post by name", description = "Get post by name")
     public ResponseEntity<Page<Post>> getByName(@PathVariable("name") @Valid String name, Pageable pageable) {
 
