@@ -1,6 +1,8 @@
 package bb.com.donation.service;
 
 
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 public interface GenericService<T, T1, T2> {

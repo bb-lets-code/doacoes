@@ -6,6 +6,9 @@ import bb.com.donation.model.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Objects;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -31,8 +34,8 @@ class PersonServiceTest {
 
         Person newPerson = new Person( ).builder ().id ( 1L ).name ( "Igor" ).build ();
 
-        personController.save(new PersonSaveDTO (newPerson.getName ()));
-        assertThat(personController.getById(1L).getBody().getName())
+        personController.save(new PersonSaveDTO (newPerson.getName (), newPerson.getId()));
+        assertThat(Objects.requireNonNull(personController.getById(1L).getBody()).getName())
                 .isEqualTo(newPerson.getName());
     }
 
@@ -53,7 +56,7 @@ class PersonServiceTest {
     void deletePersonTest() {
 
         Person newPerson = new Person().builder().id(1L).name("Igor").build();
-        Person savedPerson = personController.save( new PersonSaveDTO (newPerson.getName ())).getBody ();
+        Person savedPerson = personController.save( new PersonSaveDTO (newPerson.getName (), newPerson.getId())).getBody ();
 
         personController.delete(savedPerson.getId());
         assertThatThrownBy(() -> personController.getById(savedPerson.getId ()))

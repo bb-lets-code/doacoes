@@ -1,6 +1,7 @@
 package bb.com.donation.controller;
 
 import bb.com.donation.dto.person.PersonSaveDTO;
+import bb.com.donation.exceptions.ValidacaoException;
 import bb.com.donation.model.Person;
 import bb.com.donation.service.PersonService;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -60,14 +62,24 @@ public class PersonController {
         }
     }
 
-    @GetMapping("/filtro/{name}")
+    @GetMapping("/filter/{name}")
     @Operation(summary = "Get Person by Name")
     public ResponseEntity<Page<Person>> getByName(String name, Pageable pageable) {
         try {
             return ResponseEntity.ok(personService.filtrar(name, pageable));
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error (e.getMessage());
             return ResponseEntity.status (HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping()
+    @Operation(summary = "Listing all names")
+    public ResponseEntity<List<Person>> getAll() {
+        try {
+            return ResponseEntity.ok(personService.getAll());
+        } catch (Exception e) {
+            throw new ValidacaoException(e.getMessage());
         }
     }
 }

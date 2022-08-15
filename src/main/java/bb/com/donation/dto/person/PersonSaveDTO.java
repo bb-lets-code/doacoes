@@ -11,10 +11,11 @@ import lombok.*;
 @ToString
 public class PersonSaveDTO implements PersonGenericDTO{
     private String name;
+    private Long id;
     @Override
     public Person toPerson() {
         return Person.builder()
-                .id(null)
+                .id(id)
                 .name(name)
                 .build();
     }

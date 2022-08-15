@@ -6,13 +6,13 @@ import bb.com.donation.model.Post;
 import bb.com.donation.model.Product;
 import bb.com.donation.repository.PostRepository;
 import bb.com.donation.service.PostService;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Service
@@ -21,10 +21,9 @@ public class PostServiceImpl implements PostService {
     PostRepository postRepository;
     final ProductServiceImp productService;
 
-    public PostServiceImpl(PostRepository postRepository,  ProductServiceImp productService) {
+    public PostServiceImpl(PostRepository postRepository, ProductServiceImp productService) {
         this.postRepository = postRepository;
         this.productService = productService;
-
     }
 
     @Override
@@ -52,8 +51,6 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(aLong).orElseThrow (()-> new ValidacaoException ("Post not found"));
         postRepository.delete(post);
     }
-
-
 
     public Page<Post> getByName(String name, Pageable pageable) {
         final Post postFiltro = new Post();
