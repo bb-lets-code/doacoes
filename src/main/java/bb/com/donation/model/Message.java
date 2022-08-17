@@ -41,44 +41,8 @@ public class Message {
     private Long lastMessage;
 
 
-    public Person getPersonBy() {
-        return personBy;
-    }
+    private Long donationId;
 
-    public void setPersonBy(Person person_by) {
-        this.personBy = person_by;
-    }
 
-    public Person getPersonTo() {
-        return personTo;
-    }
-
-    public void setPersonTo(Person person_to) {
-        this.personTo = person_to;
-    }
-
-    public String getBodyMessage() {
-        return bodyMessage;
-    }
-
-    public void setBodyMessage(String message) {
-        this.bodyMessage = message;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }

@@ -45,13 +45,14 @@ public class MessageController {
         try {
             MessageDto messageToSaveDTO = modelMapper.map(message, MessageDto.class);
             Message messageSaved = messageService.save (messageToSaveDTO);
-            MessageDto messageDto = MessageDto.builder()
+            MessageDto messageDto = MessageDto.builder ()
                     .id (messageSaved.getId ())
                     .subject (messageSaved.getSubject ())
                     .bodyMessage (messageSaved.getBodyMessage ())
                     .personTo (messageSaved.getPersonTo ().getId ())
                     .personBy (messageSaved.getPersonBy ().getId ())
                     .lastMessage (messageSaved.getLastMessage ())
+                    .donationId (messageSaved.getDonationId ())
                     .build ();
             return ResponseEntity.ok (messageDto);
         } catch (ValidacaoException e) {
