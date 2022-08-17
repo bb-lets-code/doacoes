@@ -2,7 +2,6 @@ package bb.com.donation.service.impl;
 
 import bb.com.donation.dto.product.ProductGenericDTO;
 import bb.com.donation.exceptions.ValidacaoException;
-import bb.com.donation.model.Person;
 import bb.com.donation.model.Product;
 import bb.com.donation.repository.ProductRepository;
 import bb.com.donation.service.ProductService;
@@ -11,6 +10,8 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -18,15 +19,20 @@ import java.util.List;
 public class ProductServiceImp implements ProductService {
 
     ProductRepository productRepository;
+    final PersonServiceImp personServiceImp;
 
-    public ProductServiceImp(ProductRepository productRepository) {
+    public ProductServiceImp(ProductRepository productRepository, PersonServiceImp personServiceImp) {
         this.productRepository = productRepository;
+        this.personServiceImp = personServiceImp;
     }
 
 
 
     @Override
+    @Transactional
     public Product save(ProductGenericDTO productGenericDTO) {
+        Product product = productGenericDTO.toProduct();
+        personServiceImp.getById(product.getPerson().getId());
         return productRepository.save(productGenericDTO.toProduct());
     }
 
