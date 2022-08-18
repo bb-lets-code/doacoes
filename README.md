@@ -2,7 +2,7 @@
 
 Entrega 1/3: Desenvolver a especificação inicial do projeto:
 
-    Tema do projeto: 
+    Tema do projeto:  
     
     ## Marketplace de doações
     
