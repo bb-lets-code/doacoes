@@ -1,8 +1,7 @@
 package bb.com.donation.dto.post;
 
-import bb.com.donation.model.Person;
+import bb.com.donation.model.Donation;
 import bb.com.donation.model.Post;
-import bb.com.donation.model.Product;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,16 +14,16 @@ public class PostSaveDTO implements PostGenericDTO{
 
     private String urlImg;
 
-    private Long idProduct;
+    private Long idDonation;
 
     public Post toPost() {
         Post post = new Post();
         post.setName(name);
         post.setDescription (description);
         post.setUrlImg(urlImg);
-        Product product = new Product ();
-        product.setId(idProduct);
-        post.setProduct(product);
+        Donation donation = new Donation();
+        donation.setId(idDonation);
+        post.setDonation(donation);
 
         return post;
     }
