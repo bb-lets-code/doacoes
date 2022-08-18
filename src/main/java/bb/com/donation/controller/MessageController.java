@@ -63,7 +63,16 @@ public class MessageController {
     @GetMapping("/{id}")
     @Operation(summary = "Get Message by ID", tags = {"Messages"})
     public ResponseEntity<MessageDto> getById(@PathVariable @Valid Long id) {
-        MessageDto messageDto = convertToDto (messageService.getById (id));
+        Message message = messageService.getById (id);
+        MessageDto messageDto = MessageDto.builder ()
+                .id (message.getId ())
+                .subject (message.getSubject ())
+                .bodyMessage (message.getBodyMessage ())
+//                .donationId (message.get)
+                .personTo (message.getPersonTo ().getId ())
+                .personBy (message.getPersonBy ().getId ())
+                .lastMessage (message.getLastMessage ())
+                .build ();
         return ResponseEntity.ok (messageDto);
     }
 
@@ -74,9 +83,6 @@ public class MessageController {
         return ResponseEntity.ok("Message deleted");
     }
 
-    private MessageDto convertToDto(Message message) {
-        return modelMapper.map (message, MessageDto.class);
-    }
 
 
 
