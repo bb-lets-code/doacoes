@@ -1,6 +1,5 @@
 package bb.com.donation.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -44,7 +43,7 @@ public class Person {
 
 //    @JsonManagedReference(value = "person_message")
     @ManyToOne
-    @JsonBackReference(value = "person_message")
+    @JsonManagedReference(value = "person_donation")
     @JoinColumn(name = "donation_requests_id")
     private Donation donation_Requests;
 

@@ -1,6 +1,5 @@
 package bb.com.donation.model;
 
-import bb.com.donation.enums.ConditionType;
 import bb.com.donation.enums.DonationStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,7 +22,7 @@ import java.util.Set;
 @Table(name = "donation")
 public class Donation {
 
-//    TODO: filtro por comunidade e inserir o campo comunidade_id na tabela donation
+    //    TODO: filtro por comunidade e inserir o campo comunidade_id na tabela donation
 //    TODO: filtro por pessoasInteressadas e por minhas doacoes e inserir o campo person_id na tabela donation
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
