@@ -66,8 +66,8 @@ public class DonationController {
 
     @PutMapping("next-status/{idDonation}/{status}" )
     @Operation(summary = "Change status of donation", description = "Change status of donation", tags = {"Donations"})
-    public ResponseEntity<Donation> changeStatus(@PathVariable() @Valid Long id, @PathVariable @Valid String status) {
-                return ResponseEntity.ok (donationService.changeStatus (id, status));
+    public ResponseEntity<Donation> changeStatus(@PathVariable @Valid Long idDonation, @PathVariable @Valid String status) {
+                return ResponseEntity.ok (donationService.changeStatus (idDonation, status));
     }
 
     @GetMapping("/status")
